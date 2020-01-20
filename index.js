@@ -52,8 +52,10 @@ rl.question('Do what? ', (answer) => {
 
             setTimeout(function(){
                 console.log('...')
+                let a = [];
+                a.push(answer);
                       
-                        write([answer],path.join(b, '/clrdos.json')).then(res=>{
+                        write(a,path.join(b, '/clrdos.json')).then(res=>{
             
                             console.log("See Yaaaaa!");
                         },err=>{
@@ -66,7 +68,7 @@ rl.question('Do what? ', (answer) => {
             setTimeout(function(){
                 var newArr = require(path.join(b, '/clrdos.json'))
                 console.log('...')
-                
+
                 newArr.push(answer)
                     setTimeout(function(){
                       
