@@ -43,8 +43,8 @@ rl.question('Do what? ', (answer) => {
       
         let b = process.cwd();
 
-        if (!fs.existsSync(path.join(b,'/project_todos.json'))) {
-          fs.writeFile(path.join(b,'/project_todos.json'), [], function(err) {
+        if (!fs.existsSync(path.join(b,'/project_notes.json'))) {
+          fs.writeFile(path.join(b,'/project_notes.json'), [], function(err) {
             if(err) {
                 console.log(err)
             }
@@ -56,7 +56,7 @@ rl.question('Do what? ', (answer) => {
                 let a = [];
                 a.push(mAnswer);
                       
-                        write(JSON.stringify(a),path.join(b, '/project_todos.json')).then(res=>{
+                        write(JSON.stringify(a),path.join(b, '/project_notes.json')).then(res=>{
             
                             console.log("See Yaaaaa!");
                         },err=>{
@@ -70,7 +70,7 @@ rl.question('Do what? ', (answer) => {
             setTimeout(function(){
 
                 let b = process.cwd();
-                var p = path.join(b, '/project_todos.json');
+                var p = path.join(b, '/project_notes.json');
                 var newArr = require(p)
 
                 console.log('...')
@@ -79,7 +79,7 @@ rl.question('Do what? ', (answer) => {
 
                     setTimeout(function(){
                       
-                        write(JSON.stringify(newArr),path.join(b, '/project_todos.json')).then(res=>{
+                        write(JSON.stringify(newArr),path.join(b, '/project_notes.json')).then(res=>{
             
                             console.log("See Yaaaaa!");
                         },err=>{
