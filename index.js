@@ -51,12 +51,14 @@ rl.question('Do what? ', (answer) => {
         }
         console.log('...')
         newArr.push(answer)
-        write(newArr,path.join(b, '/clrdos.json')).then(res=>{
+       setTimeout(function(){
+            write(newArr,path.join(b, '/clrdos.json')).then(res=>{
 
-            console.log("See Yaaaaa!");
-        },err=>{
-            console.log("Deu ruim");
-        })
+              console.log("See Yaaaaa!");
+            },err=>{
+                console.log("Deu ruim");
+            })
+       },700)
         
 
       rl.close();
