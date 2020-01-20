@@ -40,13 +40,16 @@ rl.question('Do what? ', (answer) => {
         var b = process.cwd();
         var newArr;
         if (!fs.exists(path.join(b,'./clrdos.json'))) {
-          write([],path.join(b,'./clrdos.json'));
-            newArr= [];
-          
+          fs.writeFile(path.join(b,'./clrdos.json'), [], function(err) {
+            if(err) {
+                console.log(err)
+            }
+            console.log('...')
+        }); 
         }else{
-
           newArr = require('./clrdos.json');
         }
+        console.log('...')
         newArr.push(answer)
         write(newArr,path.join(b, '/clrdos.json')).then(res=>{
 
