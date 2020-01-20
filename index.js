@@ -42,6 +42,7 @@ rl.question('Do what? ', (answer) => {
       newArr = require('./clrdos.json');
     }else{
         write([],'./clrdos.json');
+        newArr= [];
     }
     newArr.push(answer)
     write(newArr,path.join(b, '/todos.json')).then(res=>{
