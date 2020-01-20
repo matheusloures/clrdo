@@ -53,13 +53,9 @@ rl.question('Do what? ', (answer) => {
             }); 
 
             setTimeout(function(){
-                var newArr = fs.readFileSync(path.join(b,'/clrdos.json'),'utf8')
                 console.log('...')
-                console.log('...', newArr)       
-    
-              
                       
-                        write(newArr,path.join(b, '/clrdos.json')).then(res=>{
+                        write([answer],path.join(b, '/clrdos.json')).then(res=>{
             
                             console.log("See Yaaaaa!");
                         },err=>{
@@ -73,10 +69,9 @@ rl.question('Do what? ', (answer) => {
         }else{
             console.log('...')
             setTimeout(function(){
-                var newArr = fs.readFileSync(path.join(b,'/clrdos.json'),'utf8')
+                var newArr = require(path.join(b, '/clrdos.json'))
                 console.log('...')
-                console.log('...', newArr)        
-    
+                console.log('...', newArr)   
                     setTimeout(function(){
                       
                         write(newArr,path.join(b, '/clrdos.json')).then(res=>{
