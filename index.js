@@ -38,7 +38,7 @@ rl.question('Do what? ', (answer) => {
     if(answer.length!==0){
       
         var b = process.cwd();
-        var newArr;
+        
         if (!fs.existsSync(path.join(b,'./clrdos.json'))) {
           fs.writeFile(path.join(b,'./clrdos.json'), [], function(err) {
             if(err) {
@@ -46,19 +46,20 @@ rl.question('Do what? ', (answer) => {
             }
             console.log('...')
         }); 
-        }else{
-          newArr = require('./clrdos.json');
-        }
+        console.log('...')
+        setTimeout(function(){
+          var newArr = require(path.join(b, '/clrdos.json'));
+        
         console.log('...')
         newArr.push(answer)
-       setTimeout(function(){
+       
             write(newArr,path.join(b, '/clrdos.json')).then(res=>{
 
               console.log("See Yaaaaa!");
             },err=>{
                 console.log("Deu ruim");
             })
-       },700)
+       },1500)
         
 
       rl.close();
