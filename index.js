@@ -35,23 +35,33 @@ function write(what,where){
   
 
 rl.question('Do what? ', (answer) => {
+    if(answer.length!==0){
+      
+        var b = process.cwd();
+        var newArr;
+        if (!fs.existsSync(path.join(b,'./clrdos.json'))) {
+          write([],'./clrdos.json');
+            newArr= [];
+          
+        }else{
 
-    var b = process.cwd();
-    var newArr;
-    if (fs.existsSync(path.join(b,'./clrdos.json'))) {
-      newArr = require('./clrdos.json');
+          newArr = require('./clrdos.json');
+        }
+        newArr.push(answer)
+        write(newArr,path.join(b, '/clrdos.json')).then(res=>{
+
+            console.log("See Yaaaaa!");
+        },err=>{
+            console.log("Deu ruim");
+        })
+        
+
+      rl.close();
     }else{
-        write([],'./clrdos.json');
-        newArr= [];
-    }
-    newArr.push(answer)
-    write(newArr,path.join(b, '/todos.json')).then(res=>{
-
+      console.log("Nothing to save then...");
+      setTimeout(function(){
         console.log("See Yaaaaa!");
-    },err=>{
-        console.log("Deu ruim");
-    })
-     
-  
-  rl.close();
+      },1250)
+      rl.close();
+    }
 })
