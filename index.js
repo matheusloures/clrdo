@@ -32,35 +32,65 @@ function write(what,where){
     })
 }
 
+function processFile() {
+    console.log(content);
+}
   
 
 rl.question('Do what? ', (answer) => {
     if(answer.length!==0){
       
         var b = process.cwd();
+        var t = fs.existsSync(path.join(b,'/clrdos.json'));
+        console.log(t)
         
-        if (!fs.existsSync(path.join(b,'./clrdos.json'))) {
-          fs.writeFile(path.join(b,'./clrdos.json'), [], function(err) {
+        if (!fs.existsSync(path.join(b,'/clrdos.json'))) {
+          fs.writeFile(path.join(b,'/clrdos.json'), [], function(err) {
             if(err) {
                 console.log(err)
             }
             console.log('...')
-        }); 
-      }
-        console.log('...')
-        setTimeout(function(){
-          var newArr = require(path.join(b, '/clrdos.json'));
-        
-            console.log('...')
-            newArr.push([answer])
-       
-            write(newArr,path.join(b, '/clrdos.json')).then(res=>{
+            }); 
 
-              console.log("See Yaaaaa!");
-            },err=>{
-                console.log("Deu ruim");
-            })
-       },1500)
+            setTimeout(function(){
+                var newArr = fs.readFileSync(path.join(b,'/clrdos.json'),'utf8')
+                console.log('...')
+                console.log('...', newArr)       
+    
+              
+                      
+                        write(newArr,path.join(b, '/clrdos.json')).then(res=>{
+            
+                            console.log("See Yaaaaa!");
+                        },err=>{
+                            console.log("Deu ruim");
+                        })
+                    },3000)
+           
+
+
+           
+        }else{
+            console.log('...')
+            setTimeout(function(){
+                var newArr = fs.readFileSync(path.join(b,'/clrdos.json'),'utf8')
+                console.log('...')
+                console.log('...', newArr)        
+    
+                    setTimeout(function(){
+                      
+                        write(newArr,path.join(b, '/clrdos.json')).then(res=>{
+            
+                            console.log("See Yaaaaa!");
+                        },err=>{
+                            console.log("Deu ruim");
+                        })
+                    },3000)
+           
+           },1500)
+
+        }
+        
         
 
       rl.close();
