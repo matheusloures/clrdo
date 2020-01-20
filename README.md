@@ -1,4 +1,5 @@
-<img src="https://github.com/matheusloures/clrdo/blob/master/clrcli-icon.png" title="clrcli icon - Coloringa" alt="clrcli icon">
+### clrdo
+
 A Command Line Interface to save/update a to-do list on your project's directory
 
 ### Setup
