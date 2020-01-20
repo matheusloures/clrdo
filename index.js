@@ -38,12 +38,13 @@ function processFile() {
   
 
 rl.question('Do what? ', (answer) => {
+    var mAnswer = answer;
     if(answer.length!==0){
       
-        var b = process.cwd();
+        let b = process.cwd();
 
-        if (!fs.existsSync(path.join(b,'/clrdos.json'))) {
-          fs.writeFile(path.join(b,'/clrdos.json'), [], function(err) {
+        if (!fs.existsSync(path.join(b,'/project_todos.json'))) {
+          fs.writeFile(path.join(b,'/project_todos.json'), [], function(err) {
             if(err) {
                 console.log(err)
             }
@@ -53,31 +54,38 @@ rl.question('Do what? ', (answer) => {
             setTimeout(function(){
                 console.log('...')
                 let a = [];
-                a.push(answer);
+                a.push(mAnswer);
                       
-                        write(a,path.join(b, '/clrdos.json')).then(res=>{
+                        write(JSON.stringify(a),path.join(b, '/project_todos.json')).then(res=>{
             
                             console.log("See Yaaaaa!");
                         },err=>{
                             console.log("Deu ruim");
                         })
+
                     },3000)
                       
         }else{
             console.log('...')
             setTimeout(function(){
-                var newArr = require(path.join(b, '/clrdos.json'))
+
+                let b = process.cwd();
+                var p = path.join(b, '/project_todos.json');
+                var newArr = require(p)
+
                 console.log('...')
 
-                newArr.push(answer)
+                newArr.push(mAnswer)
+
                     setTimeout(function(){
                       
-                        write(newArr,path.join(b, '/clrdos.json')).then(res=>{
+                        write(JSON.stringify(newArr),path.join(b, '/project_todos.json')).then(res=>{
             
                             console.log("See Yaaaaa!");
                         },err=>{
                             console.log("Deu ruim");
                         })
+
                     },3000)
            
            },1500)
