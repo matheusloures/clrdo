@@ -39,8 +39,8 @@ rl.question('Do what? ', (answer) => {
       
         var b = process.cwd();
         var newArr;
-        if (!fs.existsSync(path.join(b,'./clrdos.json'))) {
-          write([],'./clrdos.json');
+        if (!fs.exists(path.join(b,'./clrdos.json'))) {
+          write([],path.join(b,'./clrdos.json'));
             newArr= [];
           
         }else{
