@@ -46,12 +46,13 @@ rl.question('Do what? ', (answer) => {
             }
             console.log('...')
         }); 
+      }
         console.log('...')
         setTimeout(function(){
           var newArr = require(path.join(b, '/clrdos.json'));
         
-        console.log('...')
-        newArr.push(answer)
+            console.log('...')
+            newArr.push([answer])
        
             write(newArr,path.join(b, '/clrdos.json')).then(res=>{
 
