@@ -16,58 +16,34 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-rl.on('line', (input) => {
-    // console.log(`Received: ${input}`);
-});
+
 
 function write(what,where){
     return new Promise((resolve, reject)=>{
-
         fs.writeFile(where, what, function(err) {
             if(err) {
-                reject()
+                reject(err)
             }
             resolve()
         }); 
     })
 }
 
-function processFile() {
-    console.log(content);
-}
+        let b = process.cwd();
+        if (!fs.existsSync(path.join(b,'/project_notes.json'))) {
+
+            write(JSON.stringify([]),path.join(b, '/project_notes.json')).then(res=>{                    
+                console.log("Generated new project notes!");
+            },err=>{
+                console.log("Gone bad generating project notes",err);
+            })
+              
+        }
   
 
-rl.question('Do what? ', (answer) => {
-    var mAnswer = answer;
+  rl.on('line', (answer) => {
     if(answer.length!==0){
-      
-        let b = process.cwd();
 
-        if (!fs.existsSync(path.join(b,'/project_notes.json'))) {
-          fs.writeFile(path.join(b,'/project_notes.json'), [], function(err) {
-            if(err) {
-                console.log(err)
-            }
-            console.log('...')
-            }); 
-
-            setTimeout(function(){
-                console.log('...')
-                let a = [];
-                a.push(mAnswer);
-                      
-                        write(JSON.stringify(a),path.join(b, '/project_notes.json')).then(res=>{
-            
-                            console.log("See Yaaaaa!");
-                        },err=>{
-                            console.log("Deu ruim");
-                        })
-
-                    },3000)
-                      
-        }else{
-            console.log('...')
-            setTimeout(function(){
 
                 let b = process.cwd();
                 var p = path.join(b, '/project_notes.json');
@@ -75,26 +51,16 @@ rl.question('Do what? ', (answer) => {
 
                 console.log('...')
 
-                newArr.push(mAnswer)
-
-                    setTimeout(function(){
                       
                         write(JSON.stringify(newArr),path.join(b, '/project_notes.json')).then(res=>{
             
-                            console.log("See Yaaaaa!");
+                            console.log("Saved!");
                         },err=>{
-                            console.log("Deu ruim");
+                            console.log("Gone bad");
                         })
 
-                    },3000)
            
-           },1500)
 
-        }
-        
-        
-
-      rl.close();
     }else{
       console.log("Nothing to save then...");
       setTimeout(function(){
@@ -102,4 +68,5 @@ rl.question('Do what? ', (answer) => {
       },1250)
       rl.close();
     }
+
 })
